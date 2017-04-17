@@ -1,0 +1,57 @@
+# Nginx
+nginx:
+  build: ./Nginx
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    # app
+    - ./App/web:/app
+    - ./App/nginx/conf:/usr/local/nginx/conf
+    - ./App/nginx/logs:/usr/local/nginx/logs
+  links:
+    - php
+
+# PHP
+php:
+  build: ./PHP
+  ports:
+    - "9000"
+  volumes:
+    - ./App/php/php-fpm.conf:/usr/local/php/etc/php-fpm.conf
+    - ./App/php/www.conf:/usr/local/php/etc/php-fpm.d/www.conf
+    - ./App/php/php.ini:/usr/local/php/etc/php.ini
+    - ./App/php/logs:/usr/local/php/logs
+    - ./App/web:/app
+  links:
+    - mysql
+    - redis
+    - beanstalkd
+
+# MySQL
+mysql:
+  image: mysql:5.7
+  ports:
+    - "127.0.0.1:3306:3306"
+  volumes:
+    - ./App/mysql/database:/var/lib/mysql
+    - ./App/mysql/my.cnf:/etc/my.cnf
+  environment:
+    MYSQL_ROOT_PASSWORD: 123456
+
+# REDIS
+redis:
+  build: ./Redis
+  ports:
+    - "127.0.0.1:6379:6379"
+  volumes:
+    - ./App/redis:/usr/local/redis/conf
+
+# Beanstalkd
+beanstalkd:
+  build: ./Beanstalkd
+  ports:
+    - "127.0.0.1:11300:11300"
+  volumes:
+    - ./App/beanstalkd:/app
+

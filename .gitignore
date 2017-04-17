@@ -1,0 +1,6 @@
+.DS_Store
+Docker/App/nginx/logs/*
+Docker/App/php/logs/*
+Docker/App/mysql/database/*
+Docker/App/redis/*
+Docker/App/beanstalkd/*
