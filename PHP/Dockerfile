@@ -5,7 +5,7 @@ FROM centos:6.8
 MAINTAINER Apple <apple@ipple.net>
 
 # 设置 PHP 版本
-ENV PHP_VERSION 7.1.3
+ENV PHP_VERSION 7.1.5
 
 # 安装依赖
 RUN set -x \
@@ -22,7 +22,7 @@ RUN set -x \
     && cd ~/download \
 
     # 编译 PHP
-    && wget http://hk2.php.net/distributions/php-$PHP_VERSION.tar.gz \
+    && wget http://cn2.php.net/distributions/php-$PHP_VERSION.tar.gz \
     && tar -zxf php-$PHP_VERSION.tar.gz \
     && cd php-$PHP_VERSION \
     && ./configure \

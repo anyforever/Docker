@@ -5,7 +5,7 @@ FROM centos:6.8
 MAINTAINER Apple <apple@ipple.net>
 
 # 设置 openssl 和 nginx 版本
-ENV NGINX_VERSION 1.10.3
+ENV NGINX_VERSION 1.12.0
 ENV OPENSSL_VERSION 1.0.2h
 
 # 安装依赖
