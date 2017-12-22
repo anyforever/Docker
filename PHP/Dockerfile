@@ -1,11 +1,11 @@
 # 拉取 CentOS
-FROM centos:6.8
+FROM centos:6.9
 
 # 维护者
 MAINTAINER Apple <apple@ipple.net>
 
 # 设置 PHP 版本
-ENV PHP_VERSION 7.1.5
+ENV PHP_VERSION 7.2.0
 
 # 安装依赖
 RUN set -x \
@@ -77,7 +77,7 @@ RUN set -x \
 
     # 安装 Redis 扩展
     && cd ~/download \
-    && git clone -b php7 https://github.com/phpredis/phpredis.git \
+    && git clone -b php7-ipv6 https://github.com/phpredis/phpredis.git \
     && cd phpredis \
     && /usr/local/php/bin/phpize \
     && ./configure --with-php-config=/usr/local/php/bin/php-config \
